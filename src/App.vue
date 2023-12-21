@@ -43,7 +43,7 @@ const onSubmit = async () => {
 
       const { returnUrl = null, domain = 'ake-five.github.io' } = searchLoaction()
       setCookieWithDomain('ther', pws, 2, domain);
-      // if(returnUrl) window.location.href = returnUrl
+      if(returnUrl) window.location.href = returnUrl
     } else {
       console.log('error submit!', fields)
     }
