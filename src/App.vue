@@ -86,8 +86,8 @@ const rules = reactive({
           <el-form-item label="账号" prop='accout'>
             <el-input v-model="form.accout" />
           </el-form-item>
-          <el-form-item label="密码" prop='pws'>
-            <el-input v-model="form.pws" />
+          <el-form-item  label="密码" prop='pws'>
+            <el-input type='password' v-model="form.pws" />
           </el-form-item>
       
           <el-form-item>
