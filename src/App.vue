@@ -21,13 +21,6 @@ function setCookieWithDomain(name, value, daysToExpire, domain) {
   console.log('====================================');
   document.cookie = cookieString;
 }
-function SetCookie(name, value, expires, path, domain, secure) {
-  document.cookie = name + "=" + encodeURI(value) +
-    ((expires) ? "; expires=" + expires : "") +
-    ((path) ? "; path=" + path : "") +
-    ((domain) ? "; domain=" + domain : "") +
-    ((secure) ? "; secure" : "");
-}
 const searchLoaction = () => {
   const search = window.location.search.replace('?', '').split('&')
   return search.reduce((obj, item) => {
@@ -49,8 +42,8 @@ const onSubmit = async () => {
       const { accout, pws } = form.value
 
       const { returnUrl = null, domain = 'ake-five.github.io' } = searchLoaction()
-      SetCookie('ther', pws);
-      if (returnUrl) window.location.href = returnUrl
+      setCookieWithDomain('ther', pws, 2, domain);
+      if(returnUrl) window.location.href = returnUrl
     } else {
       console.log('error submit!', fields)
     }
@@ -93,10 +86,10 @@ const rules = reactive({
           <el-form-item label="账号" prop='accout'>
             <el-input v-model="form.accout" />
           </el-form-item>
-          <el-form-item label="密码" prop='pws'>
+          <el-form-item  label="密码" prop='pws'>
             <el-input type='password' v-model="form.pws" />
           </el-form-item>
-
+      
           <el-form-item>
             <!-- <el-button @click="onClick">取消</el-button> -->
             <el-button type="primary" @click="onSubmit">登陆</el-button>
