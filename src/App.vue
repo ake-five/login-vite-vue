@@ -41,9 +41,14 @@ const onSubmit = async () => {
     if (valid) {
       const { accout, pws } = form.value
 
-      const { returnUrl = null, domain = 'ake-five.github.io' } = searchLoaction()
+      const { domain = 'ake-five.github.io' } = searchLoaction()
+      // 获取当前页面的查询参数
+      const queryParams = new URLSearchParams(window.location.search);
+
+      // 获取 returnURl 参数的值
+      const returnUrl = queryParams.get('returnUrl');
       setCookieWithDomain('ther', pws, 2, domain);
-      if(returnUrl) window.location.href = returnUrl
+      if (returnUrl) window.location.href = returnUrl
     } else {
       console.log('error submit!', fields)
     }
@@ -86,10 +91,10 @@ const rules = reactive({
           <el-form-item label="账号" prop='accout'>
             <el-input v-model="form.accout" />
           </el-form-item>
-          <el-form-item  label="密码" prop='pws'>
+          <el-form-item label="密码" prop='pws'>
             <el-input type='password' v-model="form.pws" />
           </el-form-item>
-      
+
           <el-form-item>
             <!-- <el-button @click="onClick">取消</el-button> -->
             <el-button type="primary" @click="onSubmit">登陆</el-button>
